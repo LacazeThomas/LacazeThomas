@@ -7,11 +7,6 @@ platform:
   os: linux
 
 trigger:
-  repo:
-    exclude:
-    - editors.png
-    - languages.png
-    - operatingSystems.png
   event:
   - cron
   - push
@@ -37,6 +32,6 @@ steps:
     username: LacazeThomas
     repo: LacazeThomas
   when:
-    event: [ cron,push ]
-    cron: [ daily ]
+    event:
+      - push
 
