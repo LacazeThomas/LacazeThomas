@@ -5,6 +5,17 @@ name: linux-amd64
 platform:
   arch: amd64
   os: linux
+
+trigger:
+  repo:
+    exclude:
+    - editors.png
+    - languages.png
+    - operatingSystems.png
+  event:
+  - cron
+  cron:
+  - daily
   
 steps:
 - name: publish stats
@@ -24,4 +35,6 @@ steps:
     commitemail: contact@thomaslacaze.fr
     username: LacazeThomas
     repo: LacazeThomas
-
+  when:
+    event: [ cron ]
+    cron: [ daily ]
