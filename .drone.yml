@@ -1,0 +1,41 @@
+kind: pipeline
+type: docker
+name: linux-amd64
+
+platform:
+  arch: amd64
+  os: linux
+
+trigger:
+  repo:
+    exclude:
+    - editors.png
+    - languages.png
+    - operatingSystems.png
+  event:
+  - cron
+  cron:
+  - daily
+  
+steps:
+- name: publish stats
+  image: thomaslacaze/wakapi-stats:1
+  pull: always
+  settings:
+    environment: production
+    api_url:
+      from_secret: api_url
+    api_key:
+      from_secret: api_key
+    accesstoken:
+      from_secret: accesstoken
+    branch: main 
+    message: Update images from wakapi-stats
+    commitname: Lacaze Thomas
+    commitemail: contact@thomaslacaze.fr
+    username: LacazeThomas
+    repo: LacazeThomas
+  when:
+    event: [ cron ]
+    cron: [ daily ]
+
