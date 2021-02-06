@@ -5,13 +5,6 @@ name: linux-amd64
 platform:
   arch: amd64
   os: linux
-
-trigger:
-  event:
-  - cron
-  - push
-  cron:
-  - daily
   
 steps:
 - name: publish stats
@@ -31,7 +24,4 @@ steps:
     commitemail: contact@thomaslacaze.fr
     username: LacazeThomas
     repo: LacazeThomas
-  when:
-    event:
-      - push
 
